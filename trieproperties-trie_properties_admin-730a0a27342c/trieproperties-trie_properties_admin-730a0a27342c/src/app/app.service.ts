@@ -11,14 +11,14 @@ import { Observable } from 'rxjs';
 export class AppService {
   limit = 10;
   //   Upload_Url = environment.Upload_Url;
-  Upload_Url = `https://api.trieproperties.com/upload/`;
+  Upload_Url = `https://mfo7l7c4yg.execute-api.ap-south-1.amazonaws.com/dev/upload/`;
 
   constructor(
     private httpService: HttpClient,
     private _CookieService: CookieService
   ) {}
-  public readonly admin_Url = `https://api.trieproperties.com/admin/`;
-  public readonly ImageUrl = `https://api.trieproperties.com/upload/`;
+  public readonly admin_Url = `https://mfo7l7c4yg.execute-api.ap-south-1.amazonaws.com/dev/admin/`;
+  public readonly ImageUrl = `https://mfo7l7c4yg.execute-api.ap-south-1.amazonaws.com/dev/upload/`;
   //   public readonly admin_Url = environment.baseUrl;
   //   public readonly ImageUrl = environment.Upload_Url;
 

@@ -26,3 +26,5 @@ app.use(async (req, res, next) => {
 });
 
 app.listen(config.port, connectToDb(), console.log(`Trie Properties server running on ${config.port}`));
+
+module.exports = app

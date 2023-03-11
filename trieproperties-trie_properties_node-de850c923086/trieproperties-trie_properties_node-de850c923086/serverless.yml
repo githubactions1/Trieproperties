@@ -1,0 +1,26 @@
+service: trie-properties
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-south-1 # or whatever your region is
+  ecr:
+    images:
+      appimage:
+        path: ./
+        
+functions:
+  api:
+    # handler: lambda.handler
+    image: appimage
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true

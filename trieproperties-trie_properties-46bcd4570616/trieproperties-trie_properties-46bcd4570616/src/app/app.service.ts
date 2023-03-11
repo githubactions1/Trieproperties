@@ -17,7 +17,7 @@ export class AppService {
     private httpService: HttpClient,
     private _CookieService: CookieService
   ) { }
-  public readonly Url = `https://api.trieproperties.com/app/`;
+  public readonly Url = `https://mfo7l7c4yg.execute-api.ap-south-1.amazonaws.com/dev/`;
 
   postMethod(posturl: string, body: any): Observable<any> {
     body.ApiKey = ""

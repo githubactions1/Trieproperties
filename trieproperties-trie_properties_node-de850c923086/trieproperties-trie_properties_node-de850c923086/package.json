@@ -41,5 +41,8 @@
     "start": "node trie_properties.js"
   },
   "main": "trie_properties.js",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "serverless-offline": "^12.0.4"
+  }
 }
