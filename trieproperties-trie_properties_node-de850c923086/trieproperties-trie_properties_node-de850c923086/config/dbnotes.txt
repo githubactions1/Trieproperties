@@ -1,0 +1,37 @@
+db.createUser(
+    {
+        user: "fintrasagiam",
+        pwd: "fintrasagiam123",
+        roles: [
+            { role: "root", db: "admin" },
+            { role: "userAdminAnyDatabase", db: "admin" },
+            { role: "userAdmin", db: "admin" },
+            { role: "readAnyDatabase", db: "admin" },
+            { role: "readWriteAnyDatabase", db: "admin" },
+            { role: "userAdminAnyDatabase", db: "admin" },
+            { role: "dbAdminAnyDatabase", db: "admin" }
+        ]
+    }
+);
+
+db.createUser(
+    {
+        user: "fintraappsagiam",
+        pwd: "fintraappsagiam123",
+        roles: [
+            { role: "dbAdmin", db: "fintra"  },
+            { role: "readWrite", db: "fintra" },
+            { role: "read", db: "local" }
+        ]
+    }
+);
+
+rs.initiate(
+   {
+      _id: "fintraapp",
+      version: 1,
+      members: [
+         { _id: 0, host : "db.fintra.biz:1234" }
+      ]
+   }
+);

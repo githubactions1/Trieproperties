@@ -1,0 +1,56 @@
+
+sudo certbot certonly --standalone -d fintra.biz -d www.fintra.biz -d api.fintra.biz -d admin.fintra.biz
+
+
+
+//Install ffmpeg in ubuntu for production video resizing
+sudo apt install -y ffmpeg
+
+sudo apt install -y gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget libgbm-dev
+
+sudo npm install -g puppeteer --unsafe-perm=true
+
+server {
+        listen 80;
+        listen [::]:80 default_server;
+        return 301 https://$host$request_uri;
+}
+
+server {
+        listen 443 ssl http2;
+        server_name api.fintra.biz;
+        client_max_body_size 5M;
+        # Use certificate and key provided by Let's Encrypt:
+        ssl_certificate /etc/letsencrypt/live/fintra.biz/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/fintra.biz/privkey.pem;
+        ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+        # Pass requests for / to its backend Server
+        location / {
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-NginX-Proxy true;
+                proxy_pass http://localhost:3000/;
+                proxy_ssl_session_reuse off;
+                proxy_set_header Host $http_host;
+                proxy_cache_bypass $http_upgrade;
+                proxy_redirect off;
+        }
+        location ~ /.well-known {
+                allow all;
+        }
+}
+
+
+server {
+        listen 443 ssl http2;
+        server_name admin.fintra.biz;
+        client_max_body_size 5M;
+        root /home/ubuntu/fintraapp_admin/dist;
+        # Use certificate and key provided by Let's Encrypt:
+        ssl_certificate /etc/letsencrypt/live/fintra.biz/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/fintra.biz/privkey.pem;
+        ssl_protocols SSLv3 TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+        location / {
+                try_files $uri $uri/ /index.html;
+        }
+}

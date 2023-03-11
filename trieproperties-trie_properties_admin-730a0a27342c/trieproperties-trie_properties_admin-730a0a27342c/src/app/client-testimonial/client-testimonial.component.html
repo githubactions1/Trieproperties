@@ -1,0 +1,174 @@
+<div nz-row *ngIf="!isVisible">
+  <div nz-col nzSpan="24">
+    <div nz-row>
+      <div nz-col nzSpan="24" style="padding: 10px 0px;">
+        <nz-card nzTitle="Client Testimonial" [nzLoading]="isTableLoading" [nzExtra]="extraTemplate">
+          <nz-row [nzGutter]="16">
+
+            <div nz-col nzSpan="8">
+              <nz-statistic [nzValue]="TableList.Project_Information?.Project_Name" [nzTitle]="'Project'">
+              </nz-statistic>
+            </div>
+            <div nz-col nzSpan="8">
+              <nz-statistic [nzValue]="TableList.Profile_Name" [nzTitle]="'Profile Name'">
+              </nz-statistic>
+            </div>
+            <div nz-col nzSpan="8">
+              <nz-statistic [nzValue]="TableList.Profile_Heading" [nzTitle]="'Profile Heading'">
+              </nz-statistic>
+            </div>
+            <div nz-col nzSpan="8">
+              <nz-form-item>
+                <nz-form-label [nzSpan]="labelWidth"><span style="opacity:0.5;">Profile Image</span></nz-form-label>
+                <nz-form-control [nzSpan]="controlWidth">
+                  <a target="_blank" [attr.href]="TableList?.Profile_Image_Information?.ImageOriginal">Click To View</a>
+
+                </nz-form-control>
+
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="8">
+              <nz-form-item>
+                <nz-form-label [nzSpan]="labelWidth"><span style="opacity:0.5;">Background Image</span></nz-form-label>
+                <nz-form-control [nzSpan]="controlWidth">
+                  <a target="_blank" [attr.href]="TableList?.Baground_Image_Information?.ImageOriginal">Click To View</a>
+
+                </nz-form-control>
+
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+              <!-- <nz-statistic [nzValue]="TableList.Application_Android_Version | number"
+                    [nzTitle]="'Android Version'"></nz-statistic> -->
+              <nz-statistic [nzValue]="TableList.Main_Description" [nzTitle]="'Main Description'"></nz-statistic>
+            </div>
+            <div nz-col nzSpan="24">
+              <!-- <nz-statistic [nzValue]="TableList.Application_Android_Version | number"
+                    [nzTitle]="'Android Version'"></nz-statistic> -->
+              <nz-statistic [nzValue]="TableList.Profile_Description" [nzTitle]="'Profile Description'"></nz-statistic>
+            </div>
+          </nz-row>
+        </nz-card>
+        <ng-template #extraTemplate>
+          <a (click)="showModal(TableList)">Update</a>
+        </ng-template>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<div nz-row [nzGutter]="16" *ngIf="isVisible">
+  <div nz-col nzSpan="24">
+    <nz-card nzTitle="Update Client Testimonial">
+      <form nz-form [formGroup]="myForm" class="login-form">
+        <div nz-row [nzGutter]="16">
+
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Project</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <nz-select formControlName="ProjectID" nzShowSearch nzPlaceHolder="Please Select">
+                  <nz-option *ngFor="let project of ProjectsList" [nzValue]="project.ProjectID"
+                    [nzLabel]="project.Project_Name"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Profile Name</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <input nz-input formControlName="Profile_Name" placeholder="Enter Profile Name" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Profile Heading</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <input nz-input formControlName="Profile_Heading" placeholder="Enter Profile Heading" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="24">Profile Image</nz-form-label>
+              <nz-form-control [nzSpan]="8">
+                <nz-upload [nzBeforeUpload]="beforeUploadProfile">
+                  <button nz-button><i nz-icon [nzType]="isProfileImageUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="10" *ngIf="ProfileImageData.length>0">
+                <a target="_blank" [attr.href]="this.ProfileImageData[0].ImageOriginal">Click to View</a>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="24">Background Image</nz-form-label>
+              <nz-form-control [nzSpan]="8">
+                <!-- <button nz-button nznzType="danger" style="width: 100%;" [nzLoading]="isResatrentImageUploading" (click)="uploadImages(1)">Upload image</button> -->
+                <nz-upload [nzBeforeUpload]="beforeUploadBackground">
+                  <button nz-button><i nz-icon [nzType]="isBackgroundImageUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="10" *ngIf="BackgroundImageData.length>0">
+                <a target="_blank" [attr.href]="this.BackgroundImageData[0].ImageOriginal">Click to View</a>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="24">
+
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Main Description</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <textarea nz-input formControlName="Main_Description" placeholder="Enter Main Description"></textarea>
+              </nz-form-control>
+
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="24">
+
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Profile Description</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <textarea nz-input formControlName="Profile_Description"
+                  placeholder="Enter Profile Description"></textarea>
+              </nz-form-control>
+
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-control [nzSpan]="24" style="text-align: center;">
+                <button (click)="OnCancel()" nzType="default" style="margin-right: 10px;" nz-button>
+                  <span>Cancel</span></button>
+                <button (click)="submitForm()" [nzLoading]="isAddBtnLoading" nz-button nzType="primary">
+                  <span>Update</span></button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+        </div>
+      </form>
+    </nz-card>
+
+  </div>
+</div>
+
+
+<!-- <div nz-row>
+  <div nz-col nzSpan="24">
+    <nz-modal [(nzVisible)]="isVisible" [nzOkLoading]="isAddBtnLoading" nzTitle="Update Contact Info"
+      nzOkText="Update" (nzOnCancel)="OnCancel()" (nzOnOk)="submitForm()">
+      <ng-container *nzModalContent>
+
+      </ng-container>
+    </nz-modal>
+  </div>
+</div> -->

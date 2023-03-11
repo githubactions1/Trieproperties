@@ -1,0 +1,79 @@
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <div nz-row>
+      <div nz-col nzSpan="8" style="padding: 10px 0px;">
+        <nz-card style="width:700px;" nzTitle="Contact Info" [nzLoading]="isTableLoading" [nzExtra]="extraTemplate">
+          <nz-row [nzGutter]="16">
+
+            <div nz-col nzSpan="12">
+              <nz-statistic [nzValue]="AppVersionList.Phone_Number" [nzTitle]="'Phone Number'">
+              </nz-statistic>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-statistic [nzValue]="AppVersionList.EmailID" [nzTitle]="'EmailID'">
+              </nz-statistic>
+            </div>
+            <div nz-col nzSpan="24">
+              <div nz-row nzGutter="16">
+                <div nz-col nzSpan="12">
+                  <!-- <nz-statistic [nzValue]="AppVersionList.Application_Android_Version | number"
+                    [nzTitle]="'Android Version'"></nz-statistic> -->
+                  <nz-statistic [nzValue]="AppVersionList.Address" [nzTitle]="'Address'"></nz-statistic>
+                </div>
+              </div>
+            </div>
+          </nz-row>
+        </nz-card>
+        <ng-template #extraTemplate>
+          <a (click)="showModal(AppVersionList)">Update</a>
+        </ng-template>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <nz-modal [(nzVisible)]="isVisible" [nzOkLoading]="isAppVersionLoadin" nzTitle="Update Contact Info"
+      nzOkText="Update" (nzOnCancel)="OnCancel()" (nzOnOk)="submitForm()">
+      <ng-container *nzModalContent>
+        <form nz-form [formGroup]="myForm" class="login-form">
+          <div nz-row>
+            <div nz-col nzSpan="24">
+
+              <nz-form-item>
+                <nz-form-label [nzSpan]="labelWidth">Address</nz-form-label>
+                <nz-form-control [nzSpan]="controlWidth">
+                  <input nz-input formControlName="Address" placeholder="Enter Address" nzSize="large" />
+                </nz-form-control>
+
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+              <nz-form-item>
+                <nz-form-label [nzSpan]="labelWidth">Phone Number</nz-form-label>
+                <nz-form-control [nzSpan]="controlWidth">
+                  <input nz-input formControlName="Phone_Number" placeholder="Enter Phone Number" maxlength="10"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1');"
+                    nzSize="large" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+              <nz-form-item>
+                <nz-form-label [nzSpan]="labelWidth">EmailID</nz-form-label>
+                <nz-form-control [nzSpan]="controlWidth">
+                  <input nz-input formControlName="EmailID" placeholder="Enter EmailID" nzSize="large" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
+          </div>
+        </form>
+      </ng-container>
+    </nz-modal>
+  </div>
+</div>

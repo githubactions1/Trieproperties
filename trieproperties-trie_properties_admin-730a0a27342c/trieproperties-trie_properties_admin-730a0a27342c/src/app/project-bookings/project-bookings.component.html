@@ -1,0 +1,34 @@
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <nz-card style="width:100%;" nzTitle="PROJECT BOOKINGS">
+      <nz-table #basicTable [nzData]="tableData" [nzLoading]="isTableloading" nzShowPagination="false">
+        <thead>
+          <tr>
+
+            <th>S.No</th>
+            <th>Project Name</th>
+            <th>Name</th>
+            <th>EmailID</th>
+            <th>Phone Number</th>
+            <th>Date & Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of tableData;let i=index">
+
+            <td>{{skip+i+1}}</td>
+            <td>{{data.Project_Information?.Project_Name}}</td>
+            <td>{{data.Name}}</td>
+            <td>{{data.EmailID}}</td>
+            <td>{{data.Phone_Number}}</td>
+            <td>{{data.created_at | date:'medium'}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-pagination (nzPageIndexChange)="onNextPage($event)" [nzPageSize]="limit" [nzPageIndex]="currentPage"
+        [nzTotal]="TotalItems" [nzShowTotal]="totalTemplate"></nz-pagination>
+      <ng-template #totalTemplate let-total><span class="ng-template" style="color: #ff0018;
+      font-weight: 600;">Total : {{ total }}</span></ng-template>
+    </nz-card>
+  </div>
+</div>

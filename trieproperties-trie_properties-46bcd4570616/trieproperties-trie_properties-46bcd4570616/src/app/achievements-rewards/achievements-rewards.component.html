@@ -1,0 +1,110 @@
+
+<div class="blg_container">
+  <!-- <div class="blog_title"><h1>Blog</h1></div> -->
+  <h1 style="text-align: center;">Achievements & Rewards</h1>
+</div>
+
+<div class="container_blog">
+  <!-- <h1 class="blog_title">Our Latest Blogs</h1> -->
+  <div class="blog_main">
+  <div class="blog_item1" *ngFor="let data of tableData"> <img class="blg_img" [src]="data.Web_Image_Information?.ImageOriginal" alt="">
+      <h3 class="blg_txt_gap"> {{data.Achievements_Name}} </h3>
+      <p class="blg_txt_gap"><span class="project1">
+          {{data.Description}}
+        </span></p>
+        <div class="blg_txt2">
+          <span class="By_Admin">
+              By Admin
+          </span>
+          <span class="hr_line"></span>
+          <span class="blg_txt2">
+              {{data.created_at|date:'mediumDate'}}
+            </span>
+        </div>
+  </div>
+  <!-- <div class="blog_item2"><img class="blg_img" src="../../assets/ten_designed.jpg" alt="">
+      <h3 class="blg_txt_gap"> Residential Project </h3>
+      <p class="blg_txt_gap"><span class="project1">
+          Lorem Ipsum is simply dummy text of the printing and....
+        </span></p>
+        <div class="blg_txt2">
+          <span class="By_Admin">
+              By Admin
+          </span>
+          <span class="hr_line"></span>
+          <span class="blg_txt2">
+              January 22, 2022
+            </span>
+        </div>
+  </div>
+  <div class="blog_item3"><img class="blg_img" src="../../assets/newtown.jpg" alt="">
+      <h3 class="blg_txt_gap"> Residential Project </h3>
+      <p class="blg_txt_gap"><span class="project1">
+          Lorem Ipsum is simply dummy text of the printing and....
+        </span></p>
+        <div class="blg_txt2">
+          <span class="By_Admin">
+              By Admin
+          </span>
+          <span class="hr_line"></span>
+          <span class="blg_txt2">
+              January 22, 2022
+            </span>
+        </div>
+  </div> -->
+  
+</div>
+
+</div>
+<!-- 2nd container -->
+<!-- <div class="container_blog">
+  <div class="blog_main">
+  <div class="blog_item1"> <img class="blg_img" src="../../assets/NoPath_blg.jpg" alt="">
+      <h3 class="blg_txt_gap"> Residential Project </h3>
+      <p class="blg_txt_gap"><span class="project1">
+          Lorem Ipsum is simply dummy text of the printing and....
+        </span></p>
+        <div class="blg_txt2">
+          <span class="By_Admin">
+              By Admin
+          </span>
+          <span class="hr_line"></span>
+          <span class="blg_txt2">
+              January 22, 2022
+            </span>
+        </div>
+  </div>
+  <div class="blog_item2"><img class="blg_img" src="../../assets/NoPath_blg1.jpg" alt="">
+      <h3 class="blg_txt_gap"> Residential Project </h3>
+      <p class="blg_txt_gap"><span class="project1">
+          Lorem Ipsum is simply dummy text of the printing and....
+        </span></p>
+        <div class="blg_txt2">
+          <span class="By_Admin">
+              By Admin
+          </span>
+          <span class="hr_line"></span>
+          <span class="blg_txt2">
+              January 22, 2022
+            </span>
+        </div>
+  </div>
+  <div class="blog_item3"><img class="blg_img" src="../../assets/NoPath_blg2.jpg" alt="">
+      <h3 class="blg_txt_gap"> Residential Project </h3>
+      <p class="blg_txt_gap"><span class="project1">
+          Lorem Ipsum is simply dummy text of the printing and....
+        </span></p>
+        <div class="blg_txt2">
+          <span class="By_Admin">
+              By Admin
+          </span>
+          <span class="hr_line"></span>
+          <span class="blg_txt2">
+              January 22, 2022
+            </span>
+        </div>
+  </div>
+  
+</div>
+
+</div> -->

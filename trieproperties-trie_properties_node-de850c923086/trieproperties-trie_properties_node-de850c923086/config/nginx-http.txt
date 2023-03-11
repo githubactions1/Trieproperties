@@ -1,0 +1,93 @@
+//nodejs http nginx configuration
+
+server {
+        listen 80;
+        server_name api.jeeconcepts.com;
+        client_max_body_size 5M;
+        # Pass requests for / to its backend Server
+        location / {
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-NginX-Proxy true;
+                proxy_pass http://localhost:3000/;
+                proxy_ssl_session_reuse off;
+                proxy_set_header Host $http_host;
+                proxy_cache_bypass $http_upgrade;
+                proxy_redirect off;
+        }
+        location ~ /.well-known {
+                allow all;
+        }
+}
+
+
+//website http nginx configuration
+
+server {
+        listen 80;
+        server_name www.jeeconcepts.com jeeconcepts.com;
+        client_max_body_size 5M;
+        root /home/ubuntu/website_project/dist;
+        location / {
+                try_files $uri $uri/ /index.html;
+        }
+}
+server {
+        listen 80;
+        server_name admin.jeeconcepts.com;
+        client_max_body_size 5M;
+        root /home/ubuntu/website_project/dist;
+        location / {
+                try_files $uri $uri/ /index.html;
+        }
+}
+
+
+
+//nodejs http nginx configuration
+
+certbot --nginx -d  xweb.jeeconcepts.com -d xadmin.jeeconcepts.com -d xapi.jeeconcepts.com
+server {
+        listen 80;
+        server_name xapi.jeeconcepts.com;
+        client_max_body_size 5M;
+        # Pass requests for / to its backend Server
+        location / {
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-NginX-Proxy true;
+                proxy_pass http://localhost:4000/;
+                proxy_ssl_session_reuse off;
+                proxy_set_header Host $http_host;
+                proxy_cache_bypass $http_upgrade;
+                proxy_redirect off;
+        }
+        location ~ /.well-known {
+                allow all;
+        }
+}
+
+
+//website http nginx configuration
+
+server {
+        listen 80;
+        server_name xweb.jeeconcepts.com;
+        client_max_body_size 5M;
+        root /home/ubuntu/jee_test/jee-concepts-web/dist;
+        location / {
+                try_files $uri $uri/ /index.html;
+        }
+}
+server {
+        listen 80;
+        server_name xadmin.jeeconcepts.com;
+        client_max_body_size 5M;
+        root /home/ubuntu/jee_test/jee_concepts_admin_angular/dist;
+        location / {
+                try_files $uri $uri/ /index.html;
+        }
+}
+
+
+

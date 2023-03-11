@@ -1,0 +1,160 @@
+<nz-layout class="layout" style="height: 100vh">
+  <nz-header>
+    <div class="logo"></div>
+    <span style="font-size: 18px; color: white">Trie Properties</span>
+    <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+    </span>
+    <span style="font-size: 18px; color: white">
+      <a nz-dropdown [nzDropdownMenu]="menu" class="usericon">
+        <span>
+          <nz-avatar [nzText]="adminName" nzSize="large" style="vertical-align: middle"></nz-avatar>
+        </span>
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item>
+            <a (click)="onUpdateInfo()">Update Profile</a>
+          </li>
+          <li nz-menu-item>
+            <a (click)="updatePassword()">Change Password</a>
+          </li>
+          <li nz-menu-item>
+            <a (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </span>
+  </nz-header>
+  <nz-layout>
+    <nz-sider [nzWidth]="230" style="background: #fff" [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="0">
+      <ul nz-menu [nzMode]="'inline'" style="height: 100%" [nzInlineCollapsed]="isCollapsed">
+        <li nz-menu-item [routerLink]="['admin-section']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Admin Section</span>
+        </li>
+        <li nz-menu-item [routerLink]="['app-versions']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">App Versions</span>
+        </li>
+        <!-- <li nz-menu-item [routerLink]="['blogs']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Blogs</span>
+        </li> -->
+        <li nz-menu-item [routerLink]="['projects']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Projects</span>
+        </li>
+        <li nz-menu-item [routerLink]="['contact-forms']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Contact Forms</span>
+        </li>
+        <li nz-menu-item [routerLink]="['bookings']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Project Bookings</span>
+        </li>
+        <li nz-menu-item [routerLink]="['contact-info']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Contact Info</span>
+        </li>
+        <li nz-menu-item [routerLink]="['banners']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Banners</span>
+        </li>
+        <li nz-menu-item [routerLink]="['why-work-withus']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Why Work Withus</span>
+        </li>
+        <li nz-menu-item [routerLink]="['client-testimonial']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Client Testimonial</span>
+        </li>
+        <!-- <li nz-menu-item [routerLink]="['achievements']" routerLinkActive="ant-menu-item-selected" nz-menu-item
+          (click)="onClick()">
+          <span class="nav-text">Achievements & Rewards</span>
+        </li> -->
+      </ul>
+    </nz-sider>
+
+    <nz-layout>
+      <nz-content style="background: rgb(255, 255, 255); padding: 24px">
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
+
+<nz-modal [nzMaskClosable]="false" [(nzVisible)]="isAdminChangeModal" nzTitle="Update Password"
+  nzOkText="Update Password" (nzOnCancel)="onCancelAdminPasModal()" (nzOnOk)="onUpdateAdminPasDetails()">
+  <ng-container *nzModalContent>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <form nz-form [formGroup]="changePasswordForm">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="labelWidth">Old Password</nz-form-label>
+            <nz-form-control [nzSpan]="controlWidth" nzErrorTip="please input Old Password">
+              <input type="password" nz-input formControlName="Old_Password" placeholder="Old Password" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="labelWidth">New Password</nz-form-label>
+            <nz-form-control [nzSpan]="controlWidth" [nzValidateStatus]="passwordValidation" nzHasFeedback
+              [nzErrorTip]="errorTip">
+              <input type="password" nz-input formControlName="New_Password" (input)="checkPassword()"
+                placeholder="New Password" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="labelWidth">Confirm Password</nz-form-label>
+            <nz-form-control [nzSpan]="controlWidth" [nzValidateStatus]="validateStatusConfirmPass" nzHasFeedback
+              [nzErrorTip]="errortipValidate">
+              <input type="password" nz-input formControlName="Confirm_Password" placeholder="Confirm Password" />
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isAdminVisible" nzTitle="Update Profile Info" nzOkText="Update"
+  (nzOnCancel)="onCancelAdminInfo()" (nzOnOk)="onUpdateAdminInfo()">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="updateAdminForm">
+      <div nz-row>
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label nzSpan="8" nzRequired>Name</nz-form-label>
+            <nz-form-control nzSpan="10" nzErrorTip="Please enter Name">
+              <input type="text" nz-input formControlName="Name" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label nzSpan="8" nzRequired>Phone Number</nz-form-label>
+            <nz-form-control nzSpan="10">
+              <input type="text" nz-input formControlName="PhoneNumber" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label nzSpan="8" nzRequired>Designation</nz-form-label>
+            <nz-form-control nzSpan="10">
+              <input type="text" nz-input formControlName="Designation" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label nzSpan="8" nzRequired>EmailID</nz-form-label>
+            <nz-form-control nzSpan="10">
+              <input type="text" nz-input formControlName="EmailID" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+</nz-modal>

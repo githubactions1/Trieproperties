@@ -1,0 +1,429 @@
+<div nz-row *ngIf="!isAdding">
+  <div nz-col nzSpan="24">
+    <nz-card style="width:100%;" nzTitle="PROJECTS LIST" [nzExtra]="extraCard">
+      <div nz-row [nzGutter]="16" style="margin-bottom:20px;">
+        <div nz-col nzSpan="3">
+          <nz-form-item>
+            <nz-form-label nzSpan="24">
+              <span style="margin-right: 15px">{{isActiveList==true?'Active':'Inactive'}}</span>
+            </nz-form-label>
+            <nz-form-control nzSpan="24">
+              <nz-switch [(ngModel)]="isActiveList" (ngModelChange)="onChangeStatus()">
+              </nz-switch>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label nzSpan="24">Project Type</nz-form-label>
+            <nz-form-control nzSpan="24">
+              <nz-select [formControl]="Project_Type" nzShowSearch nzPlaceHolder="Please Select">
+                <nz-option [nzValue]="1" [nzLabel]="'Ongoing'"></nz-option>
+                <nz-option [nzValue]="2" [nzLabel]="'Upcoming'"></nz-option>
+                <nz-option [nzValue]="3" [nzLabel]="'Completed'"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="6">
+          <nz-form-item>
+            <nz-form-label nzSpan="24">Search</nz-form-label>
+            <nz-form-control nzSpan="24">
+              <input type="text" nz-input [formControl]="Search" placeholder="Search....">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <!-- <div nz-col nzSpan="6" >
+          <input type="text" nz-input [formControl]="Search"  placeholder="Search">
+        </div> -->
+        <div nz-col nzSpan="6" [nzOffset]="3">
+
+        </div>
+      </div>
+      <nz-table #basicTable [nzData]="tableData" [nzLoading]="isTableloading" nzShowPagination="false">
+        <thead>
+          <tr>
+
+            <th>S.No</th>
+            <th>Project Type</th>
+            <th>Name</th>
+            <th>Web Image</th>
+            <th>Mobile Image</th>
+            <th>Status</th>
+            <th>Actions</th>
+            <!-- <th></th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of tableData;let i=index">
+
+            <td>{{skip+i+1}}</td>
+            <td>{{data.Project_Type==1?'Ongoing':data.Project_Type==2?'Upcoming':data.Project_Type==3?'Completed':''}}
+            </td>
+            <td>{{data.Project_Name}}</td>
+            <td>
+              <span *ngIf="data.Whether_Web_Image_Available">
+                <a target="_blank" [attr.href]="data.Web_Image_Information?.ImageOriginal">
+                  Click to View
+                </a>
+              </span>
+              <span *ngIf="!data.Whether_Web_Image_Available">
+                NA
+              </span>
+            </td>
+            <td>
+              <span *ngIf="data.Whether_Mobile_Image_Available">
+                <a target="_blank" [attr.href]="data.Mobile_Image_Information?.ImageOriginal">
+                  Click to View
+                </a>
+              </span>
+              <span *ngIf="!data.Whether_Mobile_Image_Available">
+                NA
+              </span>
+            </td>
+            <td>
+              <span *ngIf="data.Status == true" style="color: green;">Active</span>
+              <span *ngIf="data.Status == false" style="color: red;">Inactive</span>
+            </td>
+            <td>
+              <i nz-icon nzType="more" nzTheme="outline" nz-dropdown [nzDropdownMenu]="menu"></i>
+              <!-- <i nz-icon nzType="more" nzTheme="outline" nz-button nz-dropdown [nzDropdownMenu]="menu"></i> -->
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item>
+                    <span (click)="onEdit(data)">Edit</span>
+                  </li>
+                  <li nz-menu-item>
+                    <span [ngSwitch]="data.Status">
+                      <span *ngSwitchCase="true">
+                        <span nz-popconfirm (nzOnConfirm)="onAction(data)" style="color: red; cursor: pointer"
+                          nzPopconfirmTitle="Are you sure you want to Inactive this?">Make Inactive</span>
+                      </span>
+                      <span *ngSwitchCase="false">
+                        <span nz-popconfirm (nzOnConfirm)="onAction(data)" style="color: blue; cursor: pointer"
+                          nzPopconfirmTitle="Are you sure you want to Active this?">Make Active</span>
+                      </span>
+                      <span *ngSwitchDefault> NA </span>
+                    </span>
+                  </li>
+                </ul>
+              </nz-dropdown-menu>
+            </td>
+            <!-- <td><i nz-icon nzType="edit" nzTheme="outline"
+                style="color:#ff0018;cursor: pointer;" (click)="onEdit(data)"></i></td> -->
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-pagination (nzPageIndexChange)="onNextPage($event)" [nzPageSize]="limit" [nzPageIndex]="currentPage"
+        [nzTotal]="TotalItems" [nzShowTotal]="totalTemplate"></nz-pagination>
+      <ng-template #totalTemplate let-total><span class="ng-template" style="color: #ff0018;
+      font-weight: 600;">Total : {{ total }}</span></ng-template>
+    </nz-card>
+    <ng-template #extraCard>
+      <button nz-button class="add-button" style="float: right;" (click)="onAdd()">
+        {{isEditing?'EDIT PROJECT':'ADD PROJECT'}}</button>
+    </ng-template>
+  </div>
+</div>
+<div nz-row *ngIf="isAdding">
+  <div nz-col nzSpan="24">
+    <nz-card style="width:100%;" [nzTitle]="title">
+      <ng-template #title>
+        {{isEditing?'Update Project':'Add Project'}}
+      </ng-template>
+      <form nz-form [formGroup]="addForm">
+        <div nz-row>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label nzSpan="8">Project Type</nz-form-label>
+              <nz-form-control nzSpan="12">
+                <nz-select formControlName="Project_Type" nzShowSearch nzPlaceHolder="Please Select">
+                  <nz-option [nzValue]="1" [nzLabel]="'Ongoing'"></nz-option>
+                  <nz-option [nzValue]="2" [nzLabel]="'Upcoming'"></nz-option>
+                  <nz-option [nzValue]="3" [nzLabel]="'Completed'"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label nzSpan="8">Project Name</nz-form-label>
+              <nz-form-control nzSpan="12" nzErrorTip="Please enter Project Name">
+                <input type="text" nz-input formControlName="Project_Name" placeholder="Project Name">
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzSpan="4">Description</nz-form-label>
+              <nz-form-control nzSpan="18" nzErrorTip="Please enter Description">
+                <textarea type="text" nz-input formControlName="Description" placeholder="Description"></textarea>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzSpan="4">Project Highlights</nz-form-label>
+              <nz-form-control nzSpan="18" formArrayName="Project_Highlights">
+                <ng-container *ngFor="let authCotrols of arrayControls.controls; let j=index">
+                  <div [formGroupName]="j">
+                    <div nz-row nzGutter="8">
+                      <div nz-col nzSpan="22">
+                        <nz-form-item>
+                          <nz-form-control nzSpan="24" [nzErrorTip]="'please enter Highlight'">
+                            <input formControlName="Highlight" nz-input placeholder="Highlight" />
+                          </nz-form-control>
+                        </nz-form-item>
+                      </div>
+                      <div nz-col nzSpan="1" *ngIf="arrayControls.controls.length>1">
+                        <nz-form-item>
+                          <nz-form-control>
+                            <button nz-button nzType="link" nz-tooltip nzTitle="Remove" (click)="onRemoveControls(j)"><i
+                                nz-icon nzType="minus-circle" nzTheme="outline"></i></button>
+                          </nz-form-control>
+                        </nz-form-item>
+
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </nz-form-control>
+              <nz-form-control nzSpan="2">
+                <i nz-icon nzType="plus-circle" style="font-size: 20px;float: right;cursor: pointer;" nzTheme="outline"
+                  (click)="addControls()"></i>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzSpan="4">Location Highlights</nz-form-label>
+              <nz-form-control nzSpan="18" formArrayName="Location_Highlights">
+                <ng-container *ngFor="let authCotrols of LocationarrayControls.controls; let j=index">
+                  <div [formGroupName]="j">
+                    <div nz-row nzGutter="8">
+                      <div nz-col nzSpan="22">
+                        <nz-form-item>
+                          <nz-form-control nzSpan="24" [nzErrorTip]="'please enter Highlight'">
+                            <input formControlName="Location_Highlight" nz-input placeholder="Highlight" />
+                          </nz-form-control>
+                        </nz-form-item>
+                      </div>
+                      <div nz-col nzSpan="1" *ngIf="LocationarrayControls.controls.length>1">
+                        <nz-form-item>
+                          <nz-form-control>
+                            <button nz-button nzType="link" nz-tooltip nzTitle="Remove"
+                              (click)="onRemoveLocationControls(j)"><i nz-icon nzType="minus-circle"
+                                nzTheme="outline"></i></button>
+                          </nz-form-control>
+                        </nz-form-item>
+
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </nz-form-control>
+              <nz-form-control nzSpan="2">
+                <i nz-icon nzType="plus-circle" style="font-size: 20px;float: right;cursor: pointer;" nzTheme="outline"
+                  (click)="addLocationControls()"></i>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzSpan="4">Amenities Highlights</nz-form-label>
+              <nz-form-control nzSpan="18" formArrayName="Amenities_Highlights">
+                <ng-container *ngFor="let authCotrols of AmenityarrayControls.controls; let j=index">
+                  <div [formGroupName]="j">
+                    <div nz-row nzGutter="8">
+                      <div nz-col nzSpan="22">
+                        <nz-form-item>
+                          <nz-form-control nzSpan="24" [nzErrorTip]="'please enter Highlight'">
+                            <input formControlName="Amenity_Highlight" nz-input placeholder="Highlight" />
+                          </nz-form-control>
+                        </nz-form-item>
+                      </div>
+                      <div nz-col nzSpan="1" *ngIf="AmenityarrayControls.controls.length>1">
+                        <nz-form-item>
+                          <nz-form-control>
+                            <button nz-button nzType="link" nz-tooltip nzTitle="Remove"
+                              (click)="onRemoveAmenityControls(j)"><i nz-icon nzType="minus-circle"
+                                nzTheme="outline"></i></button>
+                          </nz-form-control>
+                        </nz-form-item>
+
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </nz-form-control>
+              <nz-form-control nzSpan="2">
+                <i nz-icon nzType="plus-circle" style="font-size: 20px;float: right;cursor: pointer;" nzTheme="outline"
+                  (click)="addAmenityControls()"></i>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="24">Web Image(514*722)</nz-form-label>
+              <nz-form-control [nzSpan]="8">
+                <!-- <button nz-button nznzType="danger" style="width: 100%;" [nzLoading]="isResatrentImageUploading" (click)="uploadImages(1)">Upload image</button> -->
+                <nz-upload [nzBeforeUpload]="beforeUploadWeb">
+                  <button nz-button><i nz-icon [nzType]="isWebImageUploading?'loading':'upload'" nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="6" *ngIf="WebImageData.length>0">
+                <a target="_blank" [attr.href]="this.WebImageData[0].ImageOriginal">Click to View</a>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="24">Mobile Image</nz-form-label>
+              <nz-form-control [nzSpan]="8">
+                <!-- <button nz-button nznzType="danger" style="width: 100%;" [nzLoading]="isResatrentImageUploading" (click)="uploadImages(1)">Upload image</button> -->
+                <nz-upload [nzBeforeUpload]="beforeUploadMobile">
+                  <button nz-button><i nz-icon [nzType]="isMobileImageUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="6" *ngIf="MobileImageData.length>0">
+                <a target="_blank" [attr.href]="this.MobileImageData[0].ImageOriginal">Click to View</a>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="24">Project Highlight Image(536*680)</nz-form-label>
+              <nz-form-control [nzSpan]="8">
+                <!-- <button nz-button nznzType="danger" style="width: 100%;" [nzLoading]="isResatrentImageUploading" (click)="uploadImages(1)">Upload image</button> -->
+                <nz-upload [nzBeforeUpload]="beforeUploadprojecthighlight">
+                  <button nz-button><i nz-icon [nzType]="isprojectImageUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="6" *ngIf="ProjectHighlightImageData.length>0">
+                <a target="_blank" [attr.href]="this.ProjectHighlightImageData[0].ImageOriginal">Click to View</a>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="24">Location Highlight Image(536*680)</nz-form-label>
+              <nz-form-control [nzSpan]="8">
+                <!-- <button nz-button nznzType="danger" style="width: 100%;" [nzLoading]="isResatrentImageUploading" (click)="uploadImages(1)">Upload image</button> -->
+                <nz-upload [nzBeforeUpload]="beforeUploadlocationhighlight">
+                  <button nz-button><i nz-icon [nzType]="islocationImageUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="6" *ngIf="LocationHighlightImageData.length>0">
+                <a target="_blank" [attr.href]="this.LocationHighlightImageData[0].ImageOriginal">Click to View</a>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="24">Banner Image(1263*350)</nz-form-label>
+              <nz-form-control [nzSpan]="8">
+                <!-- <button nz-button nznzType="danger" style="width: 100%;" [nzLoading]="isResatrentImageUploading" (click)="uploadImages(1)">Upload image</button> -->
+                <nz-upload [nzBeforeUpload]="beforeUploadbanner">
+                  <button nz-button><i nz-icon [nzType]="isbannerImageUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="6" *ngIf="BannerImageData.length>0">
+                <a target="_blank" [attr.href]="this.BannerImageData[0].ImageOriginal">Click to View</a>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="8">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="24">Amenity Image (1152*624)</nz-form-label>
+              <nz-form-control [nzSpan]="8">
+                <!-- <button nz-button nznzType="danger" style="width: 100%;" [nzLoading]="isResatrentImageUploading" (click)="uploadImages(1)">Upload image</button> -->
+                <nz-upload [nzBeforeUpload]="beforeUploadamenity">
+                  <button nz-button><i nz-icon [nzType]="isamenityImageUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="6" *ngIf="AmenityImageData.length>0">
+                <a target="_blank" [attr.href]="this.AmenityImageData[0].ImageOriginal">Click to View</a>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <!-- <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="4">Images</nz-form-label>
+              <nz-form-control [nzSpan]="4">
+                <nz-upload [nzBeforeUpload]="beforeUploadWebArray">
+                  <button nz-button><i nz-icon [nzType]="isWebArrayImageUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="16" *ngIf="WebArrayImageData.length>0">
+                <nz-tag nzMode="closeable" *ngFor="let image of WebArrayImageData;let j = index"
+                  (nzOnClose)="removeImage(1,j)">
+                  <a target="_blank" [attr.href]="image.ImageOriginal"> Image{{j+1}}</a>
+                </nz-tag>
+              </nz-form-control>
+            </nz-form-item>
+          </div> -->
+          <!-- <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="3">Mobile Images</nz-form-label>
+              <nz-form-control [nzSpan]="4">
+                <nz-upload [nzBeforeUpload]="beforeUploadMobileArray">
+                  <button nz-button><i nz-icon [nzType]="isMobileArrayImageUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="16" *ngIf="MobileArrayImageData.length>0">
+                <nz-tag nzMode="closeable" *ngFor="let image of MobileArrayImageData;let j = index"
+                  (nzOnClose)="removeImage(2,j)">
+                  <a target="_blank" [attr.href]="image.ImageOriginal"> Image{{j+1}}</a>
+                </nz-tag>
+              </nz-form-control>
+            </nz-form-item>
+          </div> -->
+          <!-- <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-label nzFor="Cluster" [nzSpan]="3">Documents</nz-form-label>
+              <nz-form-control [nzSpan]="4">
+                <nz-upload [nzBeforeUpload]="beforeUploadDocument">
+                  <button nz-button><i nz-icon [nzType]="isDocumentUploading?'loading':'upload'"
+                      nzTheme="outline"></i>
+                    Upload</button>
+                </nz-upload>
+              </nz-form-control>
+              <nz-form-control [nzSpan]="16" *ngIf="DocumentData.length>0">
+                <nz-tag nzMode="closeable" *ngFor="let doc of DocumentData;let j = index"
+                  (nzOnClose)="removeImage(3,j)">
+                  <a target="_blank" [attr.href]="doc.Document_URL">{{doc.Document_Name}}</a>
+                </nz-tag>
+              </nz-form-control>
+            </nz-form-item>
+          </div> -->
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-control [nzSpan]="24" style="text-align: center;">
+                <button (click)="onClose()" nzType="default" style="margin-right: 10px;" nz-button>
+                  <span>Cancel</span></button>
+                <button (click)="onsubmit()" [nzLoading]="isAddBtnLoading" nz-button nzType="primary">
+                  <span>{{isEditing?'Update Project':'Add Project'}}</span></button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    </nz-card>
+  </div>
+</div>

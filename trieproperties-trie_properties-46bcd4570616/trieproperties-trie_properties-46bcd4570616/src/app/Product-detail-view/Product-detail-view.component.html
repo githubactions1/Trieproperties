@@ -1,0 +1,179 @@
+<div class="blg_container">
+   <img style="width: 100%;" [src]="ProjectInfo?.Baground_Image_Information?.ImageOriginal">
+</div>
+
+<div class="prodContainer">
+  <div class="child_item1 prodItem">
+    <h2>About {{ProjectInfo?.Project_Name}}</h2>
+    <p>
+      {{ProjectInfo?.Description}}
+    </p>
+    <!-- <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit, augue et pellentesque scelerisque, velit nulla cursus ex, non egestas nunc quam in magna. In et Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit, augue et pellentesque scelerisque, velit nulla cursus ex, non egestas nunc quam in magna. In et
+    </p> -->
+  </div>
+  <div class="child_item2 prodItem">
+    <img [src]="ProjectInfo?.Web_Image_Information?.ImageOriginal" alt="production-building-images">
+  </div>
+  
+</div>
+<!-- <div class="dowload_container">
+  <div class="dl_item dld_item1">
+    <div class="broch_img">
+    <img src="../../assets/toppng1.png" alt="">
+  </div>
+    <button>  Download Brochure</button>
+  </div>
+  <div class="dl_item dld_item2">
+    <div class="broch_img">
+      <img src="../../assets/toppng2.png" alt="">
+    </div>
+
+<button>Download Floorplan</button>
+  </div>
+  <div class="dl_item dld_item3">
+    <div class="broch_img">
+      <img src="../../assets/toppng.webp" alt="">
+    </div>
+
+<button> Book a Visit</button>
+  </div>
+</div> -->
+
+
+
+
+<div class="highlight_container">
+  <div class="poj_high">
+    <img [src]="ProjectInfo?.Project_Highlights_Image_Information?.ImageOriginal" alt="building_blk">
+  </div>
+
+  <div class="poj_high1">
+    <h1>Project Highlights</h1>
+    <ul>
+      <li *ngFor="let project of ProjectInfo?.Project_Highlights"><p>{{project}}</p></li>
+      <!-- <li><p>Each Tower consists of 32 Floors.</p></li>
+      <li><p>685 premium Residences distributed across 5 Towers</p></li>
+      <li><p>Spacious 3 and 3+ BHK Luxury Apartments, 4+ and 
+        5+ BHK Apart Villas and Sky Villas.</p></li>
+      <li><p>A Multi-facilities Clubhouse including Swimming Pools,
+        Fitness Centres, Badminton Courts,Supermarket, etc.</p></li>
+      <li><p> Exclusive Concierge facility, Spa and Salon for Residents</p></li> -->
+    </ul>
+  </div>
+</div>
+<!-- 2nd -->
+<div class="highlight_container">
+  <div class="poj_high">
+    <img [src]="ProjectInfo?.Location_Highlights_Image_Information?.ImageOriginal" alt="building_blk">
+  </div>
+
+  <div class="poj_high1">
+    <h1>Location Highlights</h1>
+    <ul>
+      <li *ngFor="let location of ProjectInfo?.Location_Highlights"><p>{{location}}</p></li>
+      <!-- <li><p>Each Tower consists of 32 Floors.</p></li>
+      <li><p>685 premium Residences distributed across 5 Towers</p></li>
+      <li><p>Spacious 3 and 3+ BHK Luxury Apartments, 4+ and 
+        5+ BHK Apart Villas and Sky Villas.</p></li>
+      <li><p>A Multi-facilities Clubhouse including Swimming Pools,
+        Fitness Centres, Badminton Courts,Supermarket, etc.</p></li>
+      <li><p> Exclusive Concierge facility, Spa and Salon for Residents</p></li> -->
+    </ul>
+  </div>
+</div>
+
+<!-- amment -->
+      <div class="amment_container">
+        <div class="heding">
+        <h1>AmEnities</h1>
+       </div>
+        <div class="amment_frst">
+          <img [src]="ProjectInfo?.Amenities_Highlights_Image_Information?.ImageOriginal" alt="rooms-image">
+        </div>
+         <div class="amment_second">
+          <ul>
+            <li style="float: left;margin-left:25px;margin-right:15px" *ngFor="let amenity of ProjectInfo?.Amenities_Highlights">{{amenity}}</li>
+            <!-- <li>Security Cabin</li>
+            <li>Garden Seating</li>
+            <li>Arrival Deck</li>
+            <li>Entry Water Feature</li>
+            <li>Colonnade Garden</li>
+            <li>Meditation Deck</li> -->
+          </ul>
+          <!-- <ul>
+            <li>Signature Water Feature</li>
+            <li>Skating Rink</li>
+            <li>Drop Off Point</li>
+            <li> Central Plaza</li>
+            <li>Stepped Water Feature</li>
+            <li>Covered Seating</li>
+            <li>Step Out Party Lawn</li>
+          </ul>
+          <ul>
+            <li>Sculpture Garden Connecting Court</li>
+            <li>Lawn And Cricket Pitch</li>
+            <li>Cycle Stand</li>
+            <li>Cycle Track</li>
+            <li>Prime Access to Club House</li>
+            <li>Vehicular Drop Off & Cycle Stand</li>
+            <li> Club Entrance Water Feature</li>
+          </ul> -->
+         </div>
+         
+      
+      </div>
+            <!-- amment end -->
+<!-- cotact us -->
+<section class="contact_us top_space">
+  <h1>Contact Us</h1>
+  <div class="contact_us_main">
+      <div class="contact_us_left">
+          <div class="info_div">
+              <img src="../../assets/buiding_icon.svg" alt="corporate office">
+              <div class="information_content">
+                  <p><strong>Corporate Office</strong></p>
+                  <p>{{ContactInfo?.Address}}</p>
+              </div>
+          </div>
+          <div class="info_div">
+              <img src="../../assets/Icon feather-mail.svg" alt="Email">
+              <div class="information_content">
+                  <p><strong>Email</strong></p>
+                  <p>{{ContactInfo?.EmailID}}</p>
+              </div>
+          </div>
+          <div class="info_div">
+              <img src="../../assets/Icon feather-phone-call.svg" alt="Phone">
+              <div class="information_content">
+                  <p><strong>Phone</strong></p>
+                  <p>{{ContactInfo?.Phone_Number}}</p>
+              </div>
+          </div>
+          
+      </div>
+
+
+      <div class="contact_us_right">
+          <form class="contact_form" [formGroup]="myForm">
+              <div class="form_control">
+                  <label for="name" hidden>Name</label>
+                  <input type="text" placeholder="Name" id="name" formControlName="Name">
+                  <label for="email" hidden>Email</label>
+                  <input type="text" placeholder="Email" id="email" formControlName="EmailID">
+              </div>
+              <div class="form_control">
+                  <label for="messages" hidden>Message</label>
+                  <input type="text" placeholder="Message" id="messages" formControlName="Message">
+                  <label for="mobile" hidden>Mobile No.</label>
+                  <input type="text" placeholder="Mobile No." id="mobile" formControlName="Phone_Number"
+                  maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1');">
+              </div>
+              <div class="form_btn_div">
+                  <button type="button" (click)="onSubmitForm()">Submit</button>
+              </div>
+          </form>
+          <img src="../../assets/Nice_building.webp" alt="Building" class="background_image_contact">
+      </div>
+  </div>
+</section>

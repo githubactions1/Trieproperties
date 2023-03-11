@@ -1,0 +1,196 @@
+<div class="land_pg">
+    <nz-carousel nzAutoPlay [nzEffect]="'flip'">
+        <div nz-carousel-content *ngFor="let index of BannersList">
+            <img class="resp_img" [src]="index.Web_Image_Information?.ImageOriginal" alt="">
+        </div>
+    </nz-carousel>
+</div>
+<h1 class="title_op">Our Projects</h1>
+<div nz-row>
+    <div nz-col [nzXs]="{span:20,offset:2}" [nzLg]="{span:20,offset:2}">
+        <div nz-row [nzGutter]="16">
+            <div nz-col [nzXs]="24" [nzLg]="6" style="margin-top: 15px;" *ngFor="let project of projectsData">
+                <a (click)="onNavigate(project)"><img class="img_area"
+                        [src]="project.Web_Image_Information?.ImageOriginal" alt=""></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container_image">
+    <div class="items_1"><a (click)="onNavigate()"><img class="img_area" src="../../assets/marvel.jpg" alt=""></a></div>
+    <div class="items_2"><img class="img_area" src="../../assets/picasa.jpg" alt=""></div>
+    <div class="items_3"><img class="img_area" src="../../assets/brindavan.jpg" alt=""></div>
+    <div class="items_4"><img class="img_area" src="../../assets/nopath.jpg" alt=""></div>
+    <div class="items_5"><img class="img_area" src="../../assets/pegus.jpg" alt=""></div>
+    <div class="items_6"><img class="img_area" src="../../assets/sky.jpg" alt=""></div>
+    <div class="items_7"><a (click)="onNavigate()"><img class="img_area" src="../../assets/melody.jpg" alt=""></a></div>
+    <div class="items_8"><img class="img_area" src="../../assets/grand.jpg" alt=""></div>
+    <div class="items_9"><img class="img_area" src="../../assets/prisma.jpg" alt=""></div>
+
+</div> -->
+<!-- reward -->
+<!-- <div class="container_reward">
+    <div class="wrap_reward">
+        <div class="reward_1">
+            <h1> Achievements
+                & Rewards</h1>
+            <button class="view_all" (click)="onNavigateBlogs(1)">View All</button>
+        </div>
+        <div class="reward_2">
+            <img class="reward_img" src="../../assets/reward.webp" alt="">
+        </div>
+
+    </div>
+
+</div> -->
+
+<!-- Why work with us-->
+
+<section class="why_work" style="margin-top: 20px;">
+    <div class="why_work_main">
+        <div class="why_work_inner">
+            <div class="work_content">
+                <h1>Why Work <br> With Us</h1>
+                <p class="work_description">{{whyWorkWithUs?.Description}}
+                </p>
+            </div>
+            <div class="work_number_div">
+                <h1>{{whyWorkWithUs?.Experience}}</h1>
+                <p>Years of <br> Experience</p>
+            </div>
+            <div class="work_number_div">
+                <h1>{{whyWorkWithUs?.Residential_Projects}}</h1>
+                <p>Residential <br>Projects</p>
+            </div>
+            <div class="work_number_div">
+                <h1>{{whyWorkWithUs?.Commercial_Projects}}</h1>
+                <p>Commercial <br>Projects</p>
+            </div>
+            <div class="work_number_div">
+                <h1>{{whyWorkWithUs?.Million_Sq_ft}}</h1>
+                <p>Million Sq. ft.</p>
+            </div>
+        </div>
+        <img src="../../assets/work_withus.jpg" alt="home_bg_left" class="work_with_us_left">
+        <img src="../../assets/trie logo.webp" alt="home_bg_left" class="work_with_us_right">
+    </div>
+</section>
+
+
+
+<!-- testimonials -->
+<div class="container_testm">
+    <main class="testm_box">
+
+        <h1 class="test_heading">Client Testimonials</h1>
+        <p class="testmt_area">
+            {{ClientTestimonialData?.Main_Description}}
+        </p>
+
+    </main>
+
+</div>
+<!-- testimonials  end-->
+<!-- testimonials  down area-->
+<div class="container_tdown">
+
+    <div class="tdown_mid_area">
+        <div class="tdown_lhs">
+            <img src="../../assets/img_profile.png"  alt="">
+            <p><span class="tdown_name">{{ClientTestimonialData?.Profile_Name}}</span></p>
+            <p><span class="sky_one">{{ClientTestimonialData?.Project_Information?.Project_Name}}</span></p>
+        </div>
+        <div class="tdown_rhs">
+            <h1><span class="tdown_title">
+                    {{ClientTestimonialData?.Profile_Heading}}
+                </span>
+            </h1>
+            <p class="tdown_text">{{ClientTestimonialData?.Profile_Description}}</p>
+        </div>
+
+    </div>
+</div>
+<!-- testimonials  down area end-->
+<!-- Blogs  down area -->
+<!-- <div class="container_blog">
+    <h1 class="blog_title">Our Latest Blogs</h1>
+    <div class="blog_main">
+        <div class="blog_item1" *ngFor="let blog of blogsData">
+            <img class="blg_img" [src]="blog.Web_Image_Information?.ImageOriginal" alt="">
+            <h3 class="blg_txt_gap"> {{blog.Blog_Name}} </h3>
+            <p class="blg_txt_gap"><span class="project1">
+                    {{blog.Description}}
+                </span></p>
+            <div class="blg_txt2">
+                <span class="By_Admin">
+                    By Admin
+                </span>
+                <span class="hr_line"></span>
+                <span class="blg_txt2">
+                    {{blog.created_at|date:'mediumDate'}}
+                </span>
+            </div>
+        </div>
+       
+    </div>
+    <div>
+        <div class="btn_read"><span class="read_blogs">
+                <a (click)="onNavigateBlogs(2)">Read All Blogs</a>
+
+            </span></div>
+    </div>
+</div> -->
+
+<!-- contact us -->
+<section class="contact_us">
+    <h1>Contact Us</h1>
+    <div class="contact_us_main">
+        <div class="contact_us_left">
+            <div class="info_div">
+                <img src="../../assets/buiding_icon.svg" alt="corporate office">
+                <div class="information_content">
+                    <p><strong>Corporate Office</strong></p>
+                    <p>{{ContactInfo?.Address}}</p>
+                </div>
+            </div>
+            <div class="info_div">
+                <img src="../../assets/Icon feather-mail.svg" alt="Email">
+                <div class="information_content">
+                    <p><strong>Email</strong></p>
+                    <p>{{ContactInfo?.EmailID}}</p>
+                </div>
+            </div>
+            <div class="info_div">
+                <img src="../../assets/Icon feather-phone-call.svg" alt="Phone">
+                <div class="information_content">
+                    <p><strong>Phone</strong></p>
+                    <p>{{ContactInfo?.Phone_Number}}</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="contact_us_right">
+            <form class="contact_form" [formGroup]="myForm">
+                <div class="form_control">
+                    <label for="name" hidden>Name</label>
+                    <input type="text" placeholder="Name" id="name" formControlName="Name">
+                    <label for="email" hidden>Email</label>
+                    <input type="text" placeholder="Email" id="email" formControlName="EmailID">
+                </div>
+                <div class="form_control">
+                    <label for="messages" hidden>Message</label>
+                    <input type="text" placeholder="Message" id="messages" formControlName="Message">
+                    <label for="mobile" hidden>Mobile No.</label>
+                    <input type="text" placeholder="Mobile No." id="mobile" formControlName="Phone_Number"
+                        maxlength="10"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1');">
+                </div>
+                <div class="form_btn_div">
+                    <button type="button" (click)="onSubmitForm()">Submit</button>
+                </div>
+            </form>
+            <img src="../../assets/Nice_building.webp" alt="Building" class="background_image_contact">
+        </div>
+    </div>
+</section>

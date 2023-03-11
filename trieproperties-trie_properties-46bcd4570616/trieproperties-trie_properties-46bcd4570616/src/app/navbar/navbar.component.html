@@ -1,0 +1,76 @@
+<header>
+  <div class="container">
+    <nav class="nav_box">
+      <a (click)="onClick(1)" class="logo"><img src="../../assets/logo.png" alt=""></a>
+      <input type="checkbox" id="tab-nav" class="tab_nav">
+      <label for="tab-nav" class="label">
+        <div class="burger"></div>
+        <div class="burger"></div>
+        <div class="burger"></div>
+      </label>
+      <ul class="content_nav">
+        <li class="item_list1"><a (click)="onClick(1)">HOME</a></li>
+        <li class="item_list2"><a (click)="onClick(2)">ABOUT(S)</a></li>
+        <li class="item_list3"><a (click)="onClick(3)">Our Projects</a></li>
+        <!-- <li class="item_list4"><a (click)="onClick(4)">Gallery</a></li>
+              <li class="item_list5"><a (click)="onClick(5)">Carrers</a></li> -->
+        <!-- <li class="item_list4"><a (click)="onClick(6)">Blog</a></li> -->
+        <li class="item_list4"><a (click)="onClick(7)">Contact</a></li>
+
+      </ul>
+      <button class="btn_vis" style="cursor: Pointer;" (click)="onClick(8)">Book a Visit</button>
+
+
+    </nav>
+
+  </div>
+</header>
+
+<!-- <div class="WebView">
+  <router-outlet></router-outlet>
+</div>
+<div class="mob">
+  <app-footer></app-footer>
+</div> -->
+<div>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>
+
+<nz-modal [nzMaskClosable]="false" [(nzVisible)]="isModalView" nzTitle="Book a Visit" nzOkText="Book"
+  (nzOnCancel)="onCancelModal()" (nzOnOk)="onSubmitForm()">
+  <ng-container *nzModalContent>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <form nz-form [formGroup]="myForm">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8">Name</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input type="text" nz-input formControlName="Name" placeholder="Name" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8">EmailID</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input type="text" nz-input formControlName="EmailID" placeholder="EmailID" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8">Phone Number</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input type="text" nz-input formControlName="Phone_Number" placeholder="Phone Number"
+              maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1');" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="8">Project</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <nz-select formControlName="ProjectID" nzShowSearch nzPlaceHolder="Please Select">
+                <nz-option *ngFor="let project of projectsData" [nzValue]="project.ProjectID" [nzLabel]="project.Project_Name"></nz-option></nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

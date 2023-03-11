@@ -1,0 +1,537 @@
+
+ :host ::ng-deep  .ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
+    border-radius: 56px;
+    border: solid 1px #ffde30;
+    background-color: #000000;
+    color: #fff;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width: 100%;
+    height: 37px;
+    padding: 2px 11px;
+}
+:host ::ng-deep  .ant-select-arrow .anticon {
+  vertical-align: top;
+  transition: transform 0.3s;
+  color: #ffde30;
+}
+:host ::ng-deep .ant-input-affix-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: 7px 11px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 1.5715;
+  border-radius: 56px;
+  background-color: #313131;
+  border: 1px solid #313131;
+  transition: all 0.3s;
+  display: inline-flex;
+}
+:host ::ng-deep .ant-input {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 11px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: #313131;
+  background-image: none;
+  border: 1px solid #313131;
+  border-radius: 56px;
+  transition: all 0.3s;
+}
+:host ::ng-deep  .ant-input-affix-wrapper {
+  color: #fff;
+}  
+
+.WebView{
+    display: block;
+  }
+  .main-text{
+    margin-left: 30px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #090856;
+    cursor: pointer;
+  }
+  .main-text:hover{
+    margin-left: 30px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #d8232a;
+    cursor: pointer;
+  } 
+  .active{
+    margin-left: 30px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #d8232a;
+    cursor: pointer;
+  }
+  ul {
+    margin: 0;
+    padding: 12px 0px;
+    overflow: hidden;
+    list-style-type: none;
+    color: #000;
+  }
+  
+  li{
+    float: left;
+    cursor: pointer;
+    color: #000;
+    
+  }
+  .mobileView{
+    display: none;
+  }
+  .navbar-box{
+    background: #fff;
+    padding: 10px 0px;
+  }
+  .login-text{
+    color: #000;
+    margin-bottom: 0px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .cityName{
+    font-size: 12px;
+    position: relative;
+    font-weight: 600;
+    color: #000;
+  }
+  .login-title{
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+  }
+  .login-form{
+    margin-top: 0px;
+  }
+  .verify-button{
+    width: 100%;
+    background: #090856;
+    border: 1px solid #090856;
+    padding:3px 0px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    height: 40px;
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+  }
+  .EnterOTP-title{
+    font-size: 25px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 5px;
+  }
+  .backIcon{
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .selectedllist{
+    color: #49ab30;
+  }
+  .Resendcode{
+    margin-top: -24px;
+    color: #090856;
+    font-weight: 600;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  div.position-sticky{
+    position: -webkit-sticky; 
+    position: sticky;
+    top:20px;
+    z-index: 100;
+    margin-top: 0px;
+    box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.16);
+    border-bottom: solid 1px #eaeaea;
+  }
+  .offer-button{
+    color: #000;
+    background-color: #ffde10;
+    border-color: #ffde10;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+    width: 100%;
+}
+:host ::ng-deep  .ant-modal-title {
+  margin-top: 20px;
+}
+.box-nave{
+  border: 1px solid #ffde10;
+  border-radius: 50px;
+  color: #ffde10;
+  padding: 8px 15px 0px 15px;
+  position: relative;
+  top: 9px;
+  height: 35px;
+}
+.stick-padding{
+  margin-top: 70px;
+}
+.padd-text{
+  margin-top: -6px;
+}
+.location-padding{
+  height: 80px;
+}
+
+
+
+.scale-up-hor-right {
+	-webkit-animation: scale-up-hor-right 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: scale-up-hor-right 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+ @-webkit-keyframes scale-up-hor-right {
+  0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+  }
+}
+@keyframes scale-up-hor-right {
+  0% {
+    -webkit-transform: scaleX(0.4);
+            transform: scaleX(0.4);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+  }
+}
+
+:host ::ng-deep .ant-drawer-close {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  z-index: 10;
+  display: block;
+  width: 65px;
+  height: 56px;
+  padding: 0;
+  font-weight: 600;
+  font-size: 25px;
+  font-style: normal;
+  line-height: 56px;
+  text-align: center;
+  text-transform: none;
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: color 0.3s;
+  text-rendering: auto;
+  color: #000!important;
+}
+.resetOTP{
+  text-align: right;
+  color: #199ad8;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+.login-button{
+  background: #090856;
+  border: 1px solid #090856;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 4px;
+  box-shadow: 8px 3px 6px 0 rgb(175 169 169 / 16%);
+  background-color: #090856;
+  cursor: pointer;
+}
+.login{
+  margin-top: 60px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.login1{
+  margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.round-number{
+  border: 1px solid #d8232a;
+  background: #d8232a;
+  border-radius: 50px;
+  height: 50px;
+  padding: 0px 6px;
+  color: #fff;
+  margin-right: 5px;
+ 
+}
+.droplist{
+  list-style: none;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 25px;
+  width: auto;
+}
+.menu-list-text{
+  font-size: 17px;font-weight:600p;
+  margin: 0px 0px 10px 10px;
+
+}
+
+.forgot-text{
+  text-align: right;color: #090856;font-size: 14px;font-weight: 600;margin-top: -15px;cursor: pointer;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .WebView{
+    display: none;
+  }
+  
+  .mobileView{
+    display: block;
+  }
+  .navbar-box{
+    background: #fff;
+    padding: 18px 20px;
+    height: 65px;
+  }
+  .menu-icon {
+    color: #ffde10;
+    font-size: 25px;
+    font-weight: 900;
+  }
+  .box-nave{
+    border: 1px solid #ffde10;
+    border-radius: 50px;
+    color: #ffde10;
+    padding: 8px 15px 0px 15px;
+    position: relative;
+    top: -3px;
+    height: 35px;
+}
+.call-text{
+  width: 100%;
+  margin-top: -10px;
+}
+.stick-padding {
+  margin-top: 0px;
+}
+.Home-text {
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.94;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #090856;
+  padding: 4px 10px;
+  }
+  :host ::ng-deep .ant-drawer-close {
+    position: absolute;
+    top: 5px;
+    right: 0;
+  }
+  .login{
+    margin-top: 30px;
+      margin-bottom: 0px;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 0px;
+  }
+  .forgot-text{
+    text-align: right;color: #090856;font-size: 14px;font-weight: 600;margin-top: -15px;cursor: pointer;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 968px) {
+  .WebView{
+    display: none;
+  }
+  .mobileView{
+    display: block;
+  }
+  .navbar-box{
+    background: #fff;
+    padding: 18px 20px;
+    height: 65px;
+  }
+  .menu-icon {
+    color: #ffde10;
+    font-size: 25px;
+    font-weight: 900;
+  }
+  .box-nave{
+    border: 1px solid #ffde10;
+    border-radius: 50px;
+    color: #ffde10;
+    padding: 8px 15px 0px 15px;
+    position: relative;
+    top: -3px;
+    height: 35px;
+}
+.call-text{
+  width: 100%;
+  margin-top: -10px;
+}
+.stick-padding {
+  margin-top: 0px;
+}
+.Home-text {
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.94;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #090856;
+  padding: 6px 10px;
+  }
+  :host ::ng-deep  .ant-drawer-close {
+    position: absolute;
+    top: 5px;
+    right: 0;
+  }
+  .forgot-text{
+    text-align: right;color: #090856;font-size: 14px;font-weight: 600;margin-top: -15px;cursor: pointer;
+  }
+ 
+}
+@media screen and (min-width: 969px) and (max-width: 1200px) {
+  .WebView{
+    display: block;
+  }
+  .mobileView{
+    display: none;
+  }
+ 
+}
+
+
+/* *************** */
+
+.wrapper{
+  max-width: 400px;
+  margin: 0px auto;
+}
+.page{
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  img{
+    max-width: 60%;
+    height: auto;
+    display: block;
+  }
+}
+.bottom-appbar {
+  height: 70px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    .tab {
+      &--left {
+        width: 100%;
+        border-top-right-radius: 30px;
+        border-top: 1px solid rgba(167, 161, 161, 0.69);
+        box-shadow: 0px 6px 7px 0px rgba(23, 23, 23, 0.28);
+      }
+      &--right {
+        width: 100%;
+        border-top-left-radius: 30px;
+        border-top: 1px solid rgba(167, 161, 161, 0.69);
+        box-shadow: 15px 4px 15px 0px rgba(23, 23, 23, 0.28);
+      }
+      &--fab {
+        width: 180px;
+        height: 100%;
+        background: transparent;
+        border: none;
+        display: flex;
+        
+        .top {
+          width: 100%;
+          height: 50%;
+          border-bottom-left-radius: 100px;
+          border-bottom-right-radius: 100px;
+          background-color: transparent;
+          box-shadow: 0px 30px 0px 25px #fff;
+          border-bottom: 1px solid rgba(167, 161, 161, 0.69);
+          display: flex;
+        }
+      }
+      background-color: #fff;
+      width: 33.4%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      // align-items: center;
+      flex-direction: column;
+      border-top: 1px solid #eee;
+      box-shadow: 1x 1x 3px #ccc, -1px -1px 3px #ccc;
+      font-size: 24px;
+      span {
+        font-size: 12px;
+      }
+      i {
+        font-size: 24px;
+      }
+      &.is-active {
+        color: #fd9d97;
+      }
+    }
+    .fab {
+      border-radius: 50%;
+      // background-color: #fe989c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 70px;
+      font-weight: bold;
+      font-size: 22px;
+      color: #fff;
+      position: relative;
+      justify-content: center;
+      transform: translate(2px,-60%);
+    }
+  }
+}

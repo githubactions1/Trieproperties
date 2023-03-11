@@ -1,0 +1,120 @@
+<div nz-row *ngIf="!isVisible">
+  <div nz-col nzSpan="24">
+    <div nz-row>
+      <div nz-col nzSpan="24" style="padding: 10px 0px;">
+        <nz-card nzTitle="Why Work With Us" [nzLoading]="isTableLoading" [nzExtra]="extraTemplate">
+          <nz-row [nzGutter]="16">
+
+            <div nz-col nzSpan="6">
+              <nz-statistic [nzValue]="TableList.Experience" [nzTitle]="'Experience'">
+              </nz-statistic>
+            </div>
+            <div nz-col nzSpan="6">
+              <nz-statistic [nzValue]="TableList.Residential_Projects" [nzTitle]="'Residential Projects'">
+              </nz-statistic>
+            </div>
+            <div nz-col nzSpan="6">
+              <nz-statistic [nzValue]="TableList.Commercial_Projects" [nzTitle]="'Commercial Projects'">
+              </nz-statistic>
+            </div>
+            <div nz-col nzSpan="6">
+              <nz-statistic [nzValue]="TableList.Million_Sq_ft" [nzTitle]="'Million Sq.ft'">
+              </nz-statistic>
+            </div>
+            <div nz-col nzSpan="24">
+              <!-- <nz-statistic [nzValue]="TableList.Application_Android_Version | number"
+                    [nzTitle]="'Android Version'"></nz-statistic> -->
+              <nz-statistic [nzValue]="TableList.Description" [nzTitle]="'Description'"></nz-statistic>
+            </div>
+          </nz-row>
+        </nz-card>
+        <ng-template #extraTemplate>
+          <a (click)="showModal(TableList)">Update</a>
+        </ng-template>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<div nz-row [nzGutter]="16" *ngIf="isVisible">
+  <div nz-col nzSpan="24">
+    <nz-card nzTitle="Update Why Work With Us">
+      <form nz-form [formGroup]="myForm" class="login-form">
+        <div nz-row [nzGutter]="16">
+
+          <div nz-col nzSpan="6">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Experience</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <input nz-input formControlName="Experience" placeholder="Enter Experience"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1');" nzSize="large" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="6">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Residential Projects</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <input nz-input formControlName="Residential_Projects" placeholder="Enter Residential Projects"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1');" nzSize="large" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="6">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Commercial Projects</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <input nz-input formControlName="Commercial_Projects" placeholder="Enter Commercial Projects"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1');" nzSize="large" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="6">
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Million Sq.ft</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <input nz-input formControlName="Million_Sq_ft" placeholder="Enter Million Sq.ft"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1');" nzSize="large" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="24">
+
+            <nz-form-item>
+              <nz-form-label [nzSpan]="labelWidth">Description</nz-form-label>
+              <nz-form-control [nzSpan]="controlWidth">
+                <textarea nz-input formControlName="Description" placeholder="Enter Description" nzSize="large" ></textarea>
+              </nz-form-control>
+
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="24">
+            <nz-form-item>
+              <nz-form-control [nzSpan]="24" style="text-align: center;">
+                <button (click)="OnCancel()" nzType="default" style="margin-right: 10px;" nz-button>
+                  <span>Cancel</span></button>
+                <button (click)="submitForm()" [nzLoading]="isAddBtnLoading" nz-button nzType="primary">
+                  <span>Update</span></button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+        </div>
+      </form>
+    </nz-card>
+
+  </div>
+</div>
+
+
+<!-- <div nz-row>
+  <div nz-col nzSpan="24">
+    <nz-modal [(nzVisible)]="isVisible" [nzOkLoading]="isAddBtnLoading" nzTitle="Update Contact Info"
+      nzOkText="Update" (nzOnCancel)="OnCancel()" (nzOnOk)="submitForm()">
+      <ng-container *nzModalContent>
+
+      </ng-container>
+    </nz-modal>
+  </div>
+</div> -->
